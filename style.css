@@ -194,6 +194,11 @@ button{
 }
 
 @media only screen and (hover: none) and (pointer: coarse){
+    .buttons button {
+    
+        margin-left: 5px;
+        margin-right: 5px;
+    }
 
     body { 
         display: flex;
