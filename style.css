@@ -1,0 +1,281 @@
+@font-face {
+    font-family: Popins;
+    src: url(./fonts/Poppins/Poppins-Regular.ttf);
+}
+
+body {
+    background-color: #140c1c;
+    background-color: #bdbeb6;
+    color: #140c1c;
+    font-family: "Popins";
+    
+}
+
+.title {
+    margin-right: auto;
+    margin-left: auto;
+    border: 2px aliceblue solid;
+    border-radius: 1rem;
+    text-align: center;
+    width: fit-content;
+    padding: 20px;
+}
+
+.title h4 {
+    font-style: italic;
+    margin-top: 0px;
+}
+
+.title h1 {
+    font-size: 10vh;
+    margin-bottom: 0px;
+}
+
+.look {
+    margin-top: 10vh;
+    display: flex;
+    bottom: 0px;
+    
+}
+.shearch {
+    
+    padding: 5vh;
+    text-align: center;
+    width: 50%;
+    
+    
+}
+
+.result  {
+    
+    padding: 5vh;
+    text-align: center;
+    width: 50%;
+    
+}
+
+.ask {
+    padding: 5vh;
+    text-align: center;
+    width: 50%;
+}
+
+input{
+    border-radius: 1rem;
+    outline: 0px;
+    border: 5px solid #6f6d7e;
+    font-size: 4vh;
+    font-family: 'Popins';
+    font-weight: bold;
+    padding-left: 30px;
+    padding-right: 30px;
+    background-color: white;
+    box-shadow: none;
+    color: #140c1c;
+    border-image: none;
+
+    width: 70%;
+    
+}
+
+select{
+    border-radius: 1rem;
+    outline: 0px;
+    border: 5px solid #6f6d7e;
+    font-size: 4vh;
+    font-family: 'Popins';
+    font-weight: bold;
+    padding-left: 30px;
+    padding-right: 30px;
+    background-color: white;
+    box-shadow: none;
+    color: #140c1c;
+    border-image: none;
+
+    width: 70%;
+    
+}
+
+button{
+    border-radius: 1rem;
+    outline: 0px;
+    border: 0px solid #6f6d7e;
+    font-size: 5vh;
+    font-family: 'Popins';
+    font-weight: bold;
+    padding-left: 30px;
+    padding-right: 30px;
+
+    margin-top: 20px;
+    
+    box-shadow: none;
+    
+    border-image: none;
+
+    color: white;
+
+    cursor: pointer;
+
+    
+    
+}
+
+.validate {
+    display : block;
+    background-color : #11998e;
+    border-radius : 1rem;
+    width: 50%;
+    padding: 5vh;
+    text-align: center;
+}
+
+.validate h2 {
+    color: white;
+    font-size: 5vh;
+}
+
+@media screen and (max-width: 816px){
+    .look {
+        flex-direction: column;
+        margin-bottom: auto;
+        margin-right: auto;
+    }
+    .shearch {
+        width: 100%;
+        padding-left: 0px;
+        padding-right: 0px;
+
+    }
+
+    .result {
+        width: 100%;
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+    .ask {
+        width: 100%;
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+}
+
+.buttons {
+    font-size: 3.5vh;
+    padding-left: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.buttons div {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.buttons button {
+    color: white;
+    width: fit-content;
+    background-color: #093028;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+
+.valider {
+    background-color: #11998e;
+}
+
+.internet {
+    background-color: #115099;
+}
+
+.ask .valider {
+    background-color: #115099;
+}
+
+@media only screen and (hover: none) and (pointer: coarse){
+
+    body { 
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        
+    }
+
+    .title {
+        margin: 0px;
+        width: 100%;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        border: 0px ;
+    }
+
+    .title h1 {
+        font-size: 4vh;
+        margin-bottom: 0px;
+        width: 100%;
+        
+    }
+
+    .title h4 {
+        font-size: 2vh;
+        margin-bottom: 0px;
+        width: fit-content;
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+        
+    }
+
+    .look {
+        font-size: 2.5vh;
+        flex-direction: column;
+        margin-bottom: auto;
+        margin-right: auto;
+    }
+    .shearch {
+        width: 100%;
+        padding-left: 0px;
+        padding-right: 0px;
+
+    }
+
+    .shearch h2 {
+        width: 100%;
+    }
+
+    .result {
+        width: 100%;
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+
+    .ask {
+        width: 100%;
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+
+    input {
+        width: 90%;
+        padding: 0px;
+    }
+
+    select {
+        width: 100%;
+    }
+
+    .validate {
+        padding: 0px;
+        width: 100%;
+    }
+
+    
+}
+
+button:hover {
+    opacity: 80%;
+}
+
