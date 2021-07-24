@@ -766,32 +766,42 @@ function create() {
     fin = croisement(mot1resultats, IndexsCaracs[0], mot2resultats, IndexsCaracs[1]);
     console.log(fin);
 
-    containerselect = document.getElementsByClassName("result2")[0]
+    if (fin.length > 30) {
+        document.getElementsByClassName("mot2final")[0].style = ""; 
+        document.getElementsByClassName("mot2final")[0].innerHTML = '<h1 style="text-align: center; color : rgb(229, 57, 53);">Il y a trop de combinaisons possibles (' + fin.length.toString() + ')</h1>';
+        document.getElementsByClassName('valider')[0].textContent = "Modifier la recherche";
+        document.getElementsByClassName('valider')[0].setAttribute('onclick','modifier();');
+        
+    } else {
+        containerselect = document.getElementsByClassName("result2")[0]
 
-    var select = document.createElement('select');
-    select.id = "resultats";
-    
+        var select = document.createElement('select');
+        select.id = "resultats";
+        
 
-    containerselect.appendChild(select);
+        containerselect.appendChild(select);
 
-    select = document.getElementById('resultats');
-    select.innerHTML = "";
-    for (var i = 0; i < fin.length; i++){
-        var opt = document.createElement('option');
-        var texteeeee = fin[i].toString();
-        texteeeee = texteeeee.replace(',', ' ');
-        opt.value = texteeeee;
-        opt.innerHTML = texteeeee;
-        select.appendChild(opt);
+        select = document.getElementById('resultats');
+        select.innerHTML = "";
+        for (var i = 0; i < fin.length; i++){
+            var opt = document.createElement('option');
+            var texteeeee = fin[i].toString();
+            texteeeee = texteeeee.replace(',', ' ');
+            opt.value = texteeeee;
+            opt.innerHTML = texteeeee;
+            select.appendChild(opt);
+        }
+
+        seepreview();
+        document.getElementById('resultats').setAttribute('onchange','seepreview();');
+
+        
+
+        document.getElementsByClassName('valider')[0].textContent = "Modifier la recherche";
+        document.getElementsByClassName('valider')[0].setAttribute('onclick','modifier();');
     }
 
-    seepreview();
-    document.getElementById('resultats').setAttribute('onchange','seepreview();');
-
     
-
-    document.getElementsByClassName('valider')[0].textContent = "Modifier la recherche";
-    document.getElementsByClassName('valider')[0].setAttribute('onclick','modifier();');
 }
 
 function modifier() {
