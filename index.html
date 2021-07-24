@@ -8,6 +8,7 @@
     <link href="style.css" rel="stylesheet">
 </head>
 <script src="./script.js"></script>
+<script src="./base.js"></script>
 <body>
     <div class="title">
         <h1>Résolveur de mots croisés</h1>
@@ -26,42 +27,18 @@
     <div class="look">
 
         <div class="shearch">
-            <h2>Critère pour le mot cherché :</h2>
+            <h2 id="consigne">Critère pour le mot cherché :</h2>
             <input type="text" id="saisie" onkeyuponpaste oninput="detectchanged()">
             <button class="valider" onclick="go()">Valider</button>
         </div>
         
         <div class="result">
-            <h2 id="textresultat">Résultats :</h2>
+            <h2 id="textresultat">Les résultats seront affichés ici :</h2>
             <select id="resultats">
                 
             </select>
             
         </div>
-        
-        <!--
-        <div class="validate">
-            <h2>Saisie prise en compte</h2>
-            <img src="./images/checked.svg" width="25%">
-        </div>
-        -->
-    
-        <!--
-         
-        <div class="Obligatoire ask">
-            <h2 style="color: #2c7744">Lettres obligatoires (@) séparés par des espaces</h2>
-            <input id="Obligatoireinput">
-            <button class="valider">Selection terminée</button>
-        </div>
-        
-        <div class="Interdits ask">
-            <h2 style="color: #89253e;">Lettres interdites (&) séparées par des espaces</h2>
-            <input id="Interditinput">
-                
-            <button class="valider">Selection terminée</button>
-        </div>
-        -->
-
         
     </div>
     
