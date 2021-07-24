@@ -775,11 +775,31 @@ function create() {
     } else {
         containerselect = document.getElementsByClassName("result2")[0]
 
+        var h1 = document.createElement('h1');
+
+        if (document.getElementById("lenombre")) {
+            elem = document.getElementById("lenombre");
+            elem.parentNode.removeChild(elem);
+        }
+        h1.id = "lenombre";
+        if (fin.length == 1) {
+            h1.textContent = fin.length.toString() + " croisement trouvé";
+        } else {
+            h1.textContent = fin.length.toString() + " croisements trouvés";
+        }
+        
+        h1.style = "color : #115099; text-align: center";
+        containerRESULTAT = document.getElementsByClassName("mot2final")[0].parentNode;
+        containerRESULTAT.prepend(h1);
+
         var select = document.createElement('select');
         select.id = "resultats";
-        
 
+        
+        
+        
         containerselect.appendChild(select);
+        
 
         select = document.getElementById('resultats');
         select.innerHTML = "";
@@ -817,6 +837,9 @@ function modifier() {
     IndexsCaracs = [-1, -1];
     elem = document.getElementById("resultats");
     elem.parentNode.removeChild(elem);
+
+    document.getElementById("saisie1").focus();
+    whofocus = "saisie1";
 }
 
 
