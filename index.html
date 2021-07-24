@@ -19,9 +19,21 @@
         <a href="./index.html"><button id="selected">Trouver un mot avec des lettres connues</button></a>
         <a href="./croisement.html"><button>Croiser deux mots</button></a>
     </div>
-    <h4>Vous pouvez ici rentrer un mot avec des trous, symbolisés par des *, afin de savoir quels mots sont possibles. Les autres possibilités permettent au programme d'affiner les résultats (consonnes ou voyelles). & permet au programme de spécifier quelles lettres sont impossible (et d'excluer les mots qui les contiennent à cette position) et @ permet de spécifier PLUSIEURS lettres au même endroits.</h4>
+    <h4 style="font-weight: lighter;">Comment trouver des mots avec seulement quelques lettres connues ?<br> 
+        - Tapez des * (étoiles) à la place de chaque lettre ignorée<br>
+        - Tapez des / (barre oblique) à la place de chaque voyelle<br>
+        - Tapez des # (dièse) à la place de chaque consonne<br>
+        - Tapez des & (esperluette) pour spécifier une liste de lettres interdites<br>
+        - Tapez des @ (arobase) pour spécifier une liste de lettres permises<br>
+        <br>    
+        Par exemple si vous cherchez le mot t#/c* vous obtiendrez une liste de mots de 5 lettres correspondant à votre recherche comme les mots TRACA ou TRACE. De même, si vous tapez pl/&**, et spécifiez dans la liste des mots interdits "oal", vous obtiendrez une liste contenant les mots de 6 lettres tels que PLAINE, PLOMBS, … <br>
+        <br>
+        Vous pouvez plusieurs  fonctions à la fois : t*&/e*<br>
+        <br>
+        Si le programme ne trouve aucun résultat correspondant à vos critères, il cherchera les mots "voisins", autrement dit, ceux qui correspondent le mieux aux critères rentrés. <br> Par exemple, si vous cherchez le mot t////a, le programme renverra un mot voisin, par exemple : TABOUA, car ici seul le B est une consonne. 
+    </h4>
     <div class="buttons">
-        <h5>* : Lettre quelconque<br>/ : Voyelle<br># : Consonne<br>& : Lettres interdites<br>@ : Lettres permises</h5>
+        <h5 style="color: #115099;">* : Lettre quelconque<br>/ : Voyelle<br># : Consonne<br>& : Lettres interdites<br>@ : Lettres permises</h5>
         <div>
             <button onclick="addCaracter('*');">*</button>
             <button onclick="addCaracter('/');">/</button>

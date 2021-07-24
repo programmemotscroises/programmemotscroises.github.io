@@ -130,8 +130,8 @@ function SelectInterdit(txt) {
 
         document.getElementsByClassName("valider")[1].style = "display : none";
 
-        validerbuttonleft.style = "background-color : #e53935; cursor : default";;
-        validerbuttonleft.disabled = true;
+        validerbuttonleft.style = "background-color : #11998e; cursor : pointer";
+        validerbuttonleft.disabled = false;
         
        
     }
@@ -705,8 +705,9 @@ function generate() {
         
         
     }
-
-    var clientWidth = parseInt(parseInt(document.getElementById("1-1").offsetWidth) / vh);
+    
+    var clientWidth = Math.floor(parseFloat(parseFloat(document.getElementById("1-1").offsetWidth) / vh)) + 1;
+    console.log(clientWidth);
     widthtotake = clientWidth;
     
     margintoto = carac1index * widthtotake;
@@ -772,7 +773,7 @@ function create() {
         document.getElementsByClassName('valider')[0].textContent = "Modifier la recherche";
         document.getElementsByClassName('valider')[0].setAttribute('onclick','modifier();');
         
-    } else {
+    } else if (fin.length > 0) {
         containerselect = document.getElementsByClassName("result2")[0]
 
         var h1 = document.createElement('h1');
@@ -817,6 +818,11 @@ function create() {
 
         
 
+        document.getElementsByClassName('valider')[0].textContent = "Modifier la recherche";
+        document.getElementsByClassName('valider')[0].setAttribute('onclick','modifier();');
+    } else {
+        document.getElementsByClassName("mot2final")[0].style = ""; 
+        document.getElementsByClassName("mot2final")[0].innerHTML = '<h1 style="text-align: center; color : rgb(229, 57, 53);"> Aucun croisement possible</h1>';
         document.getElementsByClassName('valider')[0].textContent = "Modifier la recherche";
         document.getElementsByClassName('valider')[0].setAttribute('onclick','modifier();');
     }

@@ -19,9 +19,22 @@
         <a href="./index.html"><button >Trouver un mot avec des lettres connues</button></a>
         <a href="./croisement.html"><button id="selected">Croiser deux mots</button></a>
     </div>
-    <h4>Vous pouvez ici comparer deux mots avec des trous, symbolisés par des *, afin de savoir quelles possibilités sont possibles entre les deux. <br> Lorsque vous avez rentrer vos deux mots et qu'ils s'affichent de manière "mot croisé", cliquez sur les cases sur laquelle ils se croisent.</h4>
+    <h4 style="font-weight: lighter;">Comment croiser des mots avec seulement quelques lettres connues ?<br> 
+        - Tapez des * (étoiles) à la place de chaque lettre ignorée<br>
+        - Tapez des / (barre oblique) à la place de chaque voyelle<br>
+        - Tapez des # (dièse) à la place de chaque consonne<br>
+        <span style="font-weight: bold;">Les & et les @ ne sont pas encore disponibles sur ce programme</span>
+        <br>    
+        Ce programme fonctionne exactement pareil que celui pour <a href="./index.html" style="font-weight: bold;">Trouver un mot avec des lettres connues</a><br>
+        <br>
+        Comme sur une grille de mots-croisés, si vous cherchez à comparer deux mots, le programme va chercher toutes les possibilités entre les deux. <br>
+        <br>
+        <span style="font-weight: bold;">Lorsque vous avez rentrez vos deux mots et valider, ils s'afficheront de manière "mot croisé". <br> Cliquez sur chacun des mots, sur la lettres sur laquelle ils se croisent.</span>
+        
+    </h4>
+
     <div class="buttons">
-        <h5>* : Lettre quelconque<br>/ : Voyelle<br># : Consonne</h5>
+        <h5 style="color: #115099;">* : Lettre quelconque<br>/ : Voyelle<br># : Consonne</h5>
         <div>
             <button onclick="addCaracter('*');">*</button>
             <button onclick="addCaracter('/');">/</button>
