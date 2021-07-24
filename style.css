@@ -467,7 +467,7 @@ button:hover {
         
     }
     .case {
-        width: 5vh;
+        width: 10vh;
     }
     .result2 select {
         width: 100%;
@@ -526,5 +526,9 @@ h4 {
 
 body {
     margin: 0px;
+}
+
+h1 {
+    font-size: 4vh;
 }
 
