@@ -109,8 +109,8 @@ button{
     font-size: 5vh;
     font-family: 'Popins';
     font-weight: bold;
-    padding-left: 30px;
-    padding-right: 30px;
+    padding-left: 15px;
+    padding-right: 15px;
 
     margin-top: 20px;
     
@@ -200,6 +200,11 @@ button{
 }
 
 @media only screen and (hover: none) and (pointer: coarse){
+
+    .buttons button {
+        margin-left: 5px;
+        margin-right: 5px;
+     }
 
     body { 
         display: flex;
