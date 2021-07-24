@@ -140,6 +140,133 @@ button{
     font-size: 5vh;
 }
 
+button:hover {
+    opacity: 80%;
+}
+
+#valider-button {
+    margin-bottom: 50px;
+}
+
+.valider2 {
+    background-color: #115099;
+    margin: 0px;
+    margin-left: 50px;
+    
+    
+}
+
+.case {
+    width: 10vh;
+    background-color: white;
+    border-radius: 0px;
+    border: 5px black solid;
+    border-left: 2.5px black solid;
+    border-right: 2.5px black solid;
+    color: black;
+    margin: 0;
+    
+}
+
+.case-left {
+    
+    border-left: 5px black solid;
+    
+}
+
+.case-right {
+    
+    border-right: 5px black solid;
+    
+}
+
+.ligne {
+    display: flex;
+}
+
+.mot3 button {
+    margin: 0px;
+}
+
+
+.saisiee1 {
+    display: flex;
+    vertical-align: middle;
+    margin-top: 50px;
+}
+
+.saisiee1 input{
+    border-radius: 1rem;
+    outline: 0px;
+    border: 5px solid #6f6d7e;
+    font-size: 4vh;
+    font-family: 'Popins';
+    font-weight: bold;
+    padding-left: 30px;
+    padding-right: 30px;
+    background-color: white;
+    box-shadow: none;
+    color: #140c1c;
+    border-image: none;
+
+    width: 25%;
+
+    height: 8vh;
+    
+}
+
+.saisiee2 {
+    display: flex;
+    vertical-align: middle;
+    margin-top: 50px;
+}
+
+.saisiee2 input{
+    border-radius: 1rem;
+    outline: 0px;
+    border: 5px solid #6f6d7e;
+    font-size: 4vh;
+    font-family: 'Popins';
+    font-weight: bold;
+    padding-left: 30px;
+    padding-right: 30px;
+    background-color: white;
+    box-shadow: none;
+    color: #140c1c;
+    border-image: none;
+
+    width: 25%;
+
+    height: 8vh;
+    
+}
+
+.result2 {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.result2 select{
+    border-radius: 1rem;
+    outline: 0px;
+    border: 5px solid #6f6d7e;
+    font-size: 4vh;
+    font-family: 'Popins';
+    font-weight: bold;
+    padding-left: 30px;
+    padding-right: 30px;
+    background-color: white;
+    box-shadow: none;
+    color: #140c1c;
+    border-image: none;
+
+    width: 40%;
+
+    margin-top: 20px;
+    
+}
+
 @media screen and (max-width: 816px){
     .look {
         flex-direction: column;
@@ -282,11 +409,106 @@ button{
         padding: 0px;
         width: 100%;
     }
+    .saisiee1 {
+        display: flex;
+        vertical-align: middle;
+        margin-top: 50px;
+    }
+    
+    .saisiee1 input{
+        border-radius: 1rem;
+        outline: 0px;
+        border: 5px solid #6f6d7e;
+        font-size: 4vh;
+        font-family: 'Popins';
+        font-weight: bold;
+        padding-left: 30px;
+        padding-right: 30px;
+        background-color: white;
+        box-shadow: none;
+        color: #140c1c;
+        border-image: none;
+    
+        width: 70%;
+    
+        height: 8vh;
+        
+    }
+    
+    .saisiee2 {
+        display: flex;
+        vertical-align: middle;
+        margin-top: 50px;
+    }
+    
+    .saisiee2 input{
+        border-radius: 1rem;
+        outline: 0px;
+        border: 5px solid #6f6d7e;
+        font-size: 4vh;
+        font-family: 'Popins';
+        font-weight: bold;
+        padding-left: 30px;
+        padding-right: 30px;
+        background-color: white;
+        box-shadow: none;
+        color: #140c1c;
+        border-image: none;
+    
+        width: 70%;
+    
+        height: 8vh;
+        
+    }
+    .case {
+        width: 5vh;
+    }
+    .result2 select {
+        width: 100%;
+    }
+    .liens button {
+        font-size: 3vh;
+    }
+
+    .liens {
+        flex-direction: column;
+    }
+    .liens button {
+        max-width: 100%;
+    }
 
     
 }
 
-button:hover {
-    opacity: 80%;
+
+.liens {
+    display: flex;
+    justify-content: center;
+    background-color: #333333;
+}
+
+.liens button {
+    margin: 0px;
+    background-color: #333333;
+    border-radius: 0px;
+    font-size: 3vh;
+    text-align: center;
+    max-width: 50vh;
+    height: 100%;
+}
+
+#selected {
+    background-color: #115099;
+}
+
+
+
+h4 {
+    font-size: 3vh;
+    margin-left: 20px;
+}
+
+body {
+    margin: 0px;
 }
 

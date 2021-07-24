@@ -14,6 +14,11 @@
         <h1>Résolveur de mots croisés</h1>
         <h4>Un site de Axel & Richard</h4>
     </div>
+    <div class="liens">
+        <a href="./index.html"><button id="selected">Trouver un mot avec des lettres connues</button></a>
+        <a href="./croisement.html"><button>Croiser deux mots</button></a>
+    </div>
+    <h4>Vous pouvez ici rentrer un mot avec des trous, symbolisés par des *, afin de savoir quels mots sont possibles. Les autres possibilités permettent au programme d'affiner les résultats (consonnes ou voyelles). & permet au programme de spécifier quelles lettres sont impossible (et d'excluer les mots qui les contiennent à cette position) et @ permet de spécifier PLUSIEURS lettres au même endroits.</h4>
     <div class="buttons">
         <h5>* : Lettre quelconque<br>/ : Voyelle<br># : Consonne<br>& : Lettres interdites<br>@ : Lettres permises</h5>
         <div>
@@ -28,7 +33,7 @@
 
         <div class="shearch">
             <h2 id="consigne">Critère pour le mot cherché :</h2>
-            <input type="text" id="saisie" onkeyuponpaste oninput="detectchanged()">
+            <input type="text" id="saisie" autofocus onkeyuponpaste oninput="detectchanged()" onfocus="lastfocusset(this.id)">
             <button class="valider" onclick="go()">Valider</button>
         </div>
         

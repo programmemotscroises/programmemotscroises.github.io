@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mots croisés</title>
+    <link href="style.css" rel="stylesheet">
+</head>
+<script src="./script.js"></script>
+<script src="./base.js"></script>
+<body>
+    <div class="title">
+        <h1>Résolveur de mots croisés</h1>
+        <h4>Un site de Axel & Richard</h4>
+    </div>
+    <div class="liens">
+        <a href="./index.html"><button >Trouver un mot avec des lettres connues</button></a>
+        <a href="./croisement.html"><button id="selected">Croiser deux mots</button></a>
+    </div>
+    <h4>Vous pouvez ici comparer deux mots avec des trous, symbolisés par des *, afin de savoir quelles possibilités sont possibles entre les deux. <br> Lorsque vous avez rentrer vos deux mots et qu'ils s'affichent de manière "mot croisé", cliquez sur les cases sur laquelle ils se croisent.</h4>
+    <div class="buttons">
+        <h5>* : Lettre quelconque<br>/ : Voyelle<br># : Consonne</h5>
+        <div>
+            <button onclick="addCaracter('*');">*</button>
+            <button onclick="addCaracter('/');">/</button>
+            <button onclick="addCaracter('#');">#</button>
+        </div>
+    </div>
+
+    
+    <div class="final" style=" margin-left: 20px; margin-bottom: 20px;">
+        <div class="saisiee1" onfocus="lastfocusset(this.id)">
+            <input type="text" id="saisie1" autofocus>
+            <button class="valider2" id="buttonvalider1" onclick="tobutton1();">Ok</button>
+        </div>
+
+        <div class="saisiee2">
+            <input type="text" id="saisie2"onfocus="lastfocusset(this.id)">
+            <button class="valider2" id="buttonvalider2" onclick="tobutton2();">Ok</button>
+        </div>
+        
+        
+
+        <button class="valider" id="valider-button" onclick="create();" style="display: none; ">Valider</button>
+        
+        
+    </div>
+
+    <div class="result2">
+       
+        
+        
+    </div>
+
+
+</body>
+
+
+
+</html>
