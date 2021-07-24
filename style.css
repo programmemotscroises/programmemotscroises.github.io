@@ -18,7 +18,9 @@ body {
     border-radius: 1rem;*/
     text-align: center;
     width: 100%;
-    padding: 20px;
+    padding: 0px;
+    padding-top: 20px;
+    padding-bottom: 20px;
     background-color: #333333;
     color: aliceblue;
 }
@@ -482,6 +484,10 @@ button:hover {
     .liens a  {
         width: 100%;
         height: 10vh;
+    }
+
+    .title {
+        padding-bottom: 50px;
     }
 
     
