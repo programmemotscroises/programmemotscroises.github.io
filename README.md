@@ -10,7 +10,7 @@ Il permet une recherche plus précise, en proposant à l'utilisateur de spécifi
 
 Afin d'aider l'utilisateur dans l'affinage de ses recherches, il peut spécifier au programme un caractère, qui symbolise une lettre dont il est pas sûr (Par exemple une lettre qui pourrait être soit un A, un O, ou un E.
 
-Il peut aussi, au contraire, restreindre ses possibilités, en excluant certaines lettres, por affiner les résltats.
+Il peut aussi, au contraire, restreindre ses possibilités, en excluant certaines lettres, pour affiner les résltats.
 
 
 Le programme utilise la distance de Hamming, pour la recherche dans la base de donnée, et a initialement été conçu en Python.
