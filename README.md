@@ -1,7 +1,7 @@
 # Programmemotscroises
 
 Programme mots croisés est un site web, qui a pour objectif d'aider dans la résolution de mots croisés.
-Il propose pour cela une base de donnée, de 416 524 mots, qu'il peut parcourir et sortir des résultats.
+Il propose pour cela une base de donnée, de 416 524 mots de la langue française, qu'il peut parcourir, et dont il peut tirer des résultats.
 
 Le programme permet la possibilité de chercher des mots avec des trous, symbolisés par des * (étoiles).
 Pour autant, il ne se limite pas à celà.
