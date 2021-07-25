@@ -1066,6 +1066,40 @@ function seepreview() {
         }    
     }
 }
+function httpGet(theUrl)
+{
+	var jepeuxenvoyerlasauce;
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open( "GET", theUrl, false);
+	xmlHttp.onloadend = function() {
+		if(xmlHttp.status == 404) {
+			console.log("Erreur 404 détectée");
+			jepeuxenvoyerlasauce = "nope";
+		} else {
+			jepeuxenvoyerlasauce = "gobg";
+		}
+			
+	}
+    xmlHttp.send(null);
+	if (jepeuxenvoyerlasauce === "gobg"){
+		return xmlHttp.responseText;
+	} else {
+		return "caca";
+	}
+    
+}
+function test() {
+    var xhr = new XMLHttpRequest(); 
+    xhr.open('GET', 'https://jsonplaceholder.typicode.com/users/1');
+    xhr.onreadystatechange = function() {
+    if (xhr.readyState === 4) {
+        alert(xhr.responseText);
+    }
+    };
+    xhr.send();
+}
+//test();
+console.log(httpGet("https://www.fsolver.fr/"));
 
 function basicfocus(){
     var path = window.location.pathname;
