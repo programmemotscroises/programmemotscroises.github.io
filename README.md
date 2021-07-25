@@ -1,4 +1,4 @@
-Vous pouvez trouver le projet sur : [Programmemotscroises](http://programmemotscroises.github.io)
+Vous pouvez trouver le projet sur : (http://programmemotscroises.github.io)
 
 # Programmemotscroises
 
