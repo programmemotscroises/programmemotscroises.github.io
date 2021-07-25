@@ -46,7 +46,8 @@
 
         <div class="shearch">
             <h2 id="consigne">Critère pour le mot cherché :</h2>
-            <input type="text" id="saisie" autofocus onkeyuponpaste oninput="detectchanged()" onfocus="lastfocusset(this.id)">
+            <span> <input type="text" id="saisie" autofocus onkeyuponpaste oninput="detectchanged()" onfocus="lastfocusset(this.id)"> <button onclick="deletetext('saisie');" id="deleter">&#x1F5D1</button></span>
+            
             <button class="valider" onclick="go()">Valider</button>
         </div>
         
