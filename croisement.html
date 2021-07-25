@@ -13,7 +13,7 @@
 <body>
     <div class="title">
         <h1>Résolveur de mots croisés</h1>
-        <h4>Un site de Axel & Richard</h4>
+        <h4>Un site de Axel Thauvin</h4>
     </div>
     <div class="liens">
         <a href="./index.html"><button >Trouver un mot avec des lettres connues</button></a>
@@ -27,9 +27,12 @@
         <br>    
         Ce programme fonctionne exactement pareil que celui pour <a href="./index.html" style="font-weight: bold;">Trouver un mot avec des lettres connues</a><br>
         <br>
-        Comme sur une grille de mots-croisés, si vous cherchez à comparer deux mots, le programme va chercher toutes les possibilités entre les deux. <br>
+        Comme sur une grille de mots-croisés, si vous cherchez à croiser deux mots, le programme va chercher toutes les possibilités entre les deux, déféni par la case où ils se croisent<br>
         <br>
-        <span style="font-weight: bold;">Lorsque vous avez rentrez vos deux mots et valider, ils s'afficheront de manière "mot croisé". <br> Cliquez sur chacun des mots, sur la lettres sur laquelle ils se croisent.</span>
+        <span style="font-weight: bold;">Lorsque vous avez rentrez vos deux mots et valider, ils s'afficheront de manière "mot croisé". <br> Cliquez sur chacun des mots, sur la lettres sur laquelle ils se croisent. <br> 
+        <br>
+        Lorsque les mots sont croisés de la manière "mot croisé", vous pouvez cliquez dessus pour obtenir la définition
+    </span>
         
     </h4>
 
@@ -41,6 +44,7 @@
             <button onclick="addCaracter('#');">#</button>
         </div>
     </div>
+    <h1 id="whattodo">Commencez par choisir deux mots</h1>
 
     
     <div class="final" style=" margin-left: 20px; margin-bottom: 20px;">

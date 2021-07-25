@@ -493,6 +493,7 @@ function selectcase(id) {
         document.getElementsByClassName('valider')[0].style = "display : block;";
         location.href = "#";
         location.href = "#valider-button";
+        
     }
     
 
@@ -655,12 +656,31 @@ function distanceHammingSiplyfied(motatrouver, diff, error) {
     
 }
 
-Mots = {"Mot1" : "", "Mot2" : ""}
+Mots = {"Mot1" : "", "Mot2" : ""};
+let WordsSelected = 0
 
 function generate() {
+
+    document.getElementById("buttonvalider1").textContent = "Ok";
+    document.getElementById("buttonvalider1").style = "display : none";
+
+    document.getElementById("buttonvalider2").textContent = "Ok";
+    document.getElementById("buttonvalider2").style = "display : none";
+
+    document.getElementById("whattodo").textContent = "";
+
+
     console.log(IndexsCaracs);
     mot1 = document.getElementsByClassName("mot1")[0];
+
+
     mot2 = document.getElementsByClassName("mot2")[0];
+
+    
+
+    
+
+
     mot2.style = "flex-direction : column";
     others = mot2.childNodes;
 
@@ -706,8 +726,8 @@ function generate() {
         
     }
     
-    var clientWidth = Math.floor(parseFloat(parseFloat(document.getElementById("1-1").offsetWidth) / vh)) + 1;
-    console.log(clientWidth);
+    var clientWidth = Math.round(Math.floor(parseFloat(parseFloat(document.getElementById("1-1").offsetWidth) / vh)) + 0.45);
+    console.log(clientWidth.toString() + "vh de largeur détecté.");
     widthtotake = clientWidth;
     
     margintoto = carac1index * widthtotake;
@@ -727,14 +747,60 @@ function generate() {
 }
 
 
+function gotolink(url) {
+    window.open(url, "_blank");
+}
+
 function create() {
+    Mot1Texte = Mots["Mot1"];
+    Mot2Texte = Mots["Mot2"];
+
+    String.prototype.replaceAt = function(index, replacement) {
+        if (index >= this.length) {
+            return this.valueOf();
+        }
+     
+        return this.substring(0, index) + replacement + this.substring(index + 1);
+    }
+
+    if (Mot1Texte[IndexsCaracs[0]] != Mot2Texte[IndexsCaracs[1]]) {
+        console.log("Le croisement ne correspond pas ! : " + Mot1Texte[IndexsCaracs[0]] + " et " + Mot2Texte[IndexsCaracs[1]]);
+        if (Mot1Texte[IndexsCaracs[0]] == "*" && (Mot2Texte[IndexsCaracs[1]] == "#" || Mot2Texte[IndexsCaracs[1]] == "/")) {
+            Mot1Texte = Mot1Texte.replaceAt(IndexsCaracs[0], Mot2Texte[IndexsCaracs[1]]);
+        } else if (Mot2Texte[IndexsCaracs[1]] == "*" && (Mot1Texte[IndexsCaracs[0]] == "#" || Mot1Texte[IndexsCaracs[0]] == "/")) {
+            Mot2Texte = Mot2Texte.replaceAt(IndexsCaracs[1], Mot1Texte[IndexsCaracs[0]]);
+        } else if (Mot1Texte[IndexsCaracs[0]] == "*"){
+            Mot1Texte = Mot1Texte.replaceAt(IndexsCaracs[0], Mot2Texte[IndexsCaracs[1]]);
+        } if (Mot2Texte[IndexsCaracs[1]] == "*"){
+            Mot2Texte = Mot2Texte.replaceAt(IndexsCaracs[1], Mot1Texte[IndexsCaracs[0]]);
+        }
+        console.log("On arrive donc à : " + Mot1Texte + " | " + Mot2Texte);
+    }
+
+    if (Mot1Texte[IndexsCaracs[0]] != Mot2Texte[IndexsCaracs[1]]) {
+        document.getElementById("whattodo").textContent = "Les lettres croisées ne correspondent pas";
+        document.getElementById("whattodo").style.color = "#eb3349";
+        modifytext("1");
+        modifytext("2");
+
+        IndexsCaracs = [-1, -1];
+        WordsSelected = 0;
+    } else {
+
+    
     
     generate();
 
-    Mot1Texte = Mots["Mot1"];
-    mot1resultats = distanceHammingSiplyfied(Mot1Texte, 0, "none");
     
-    Mot2Texte = Mots["Mot2"];
+
+    
+
+    
+
+    
+
+
+    mot1resultats = distanceHammingSiplyfied(Mot1Texte, 0, "none");
     mot2resultats = distanceHammingSiplyfied(Mot2Texte, 0, "none");
     
 
@@ -766,6 +832,8 @@ function create() {
 
     fin = croisement(mot1resultats, IndexsCaracs[0], mot2resultats, IndexsCaracs[1]);
     console.log(fin);
+
+    
 
     if (fin.length > 30) {
         document.getElementsByClassName("mot2final")[0].style = ""; 
@@ -814,8 +882,15 @@ function create() {
         }
 
         seepreview();
+
+        location.href = "#";
+        location.href = "#resultats";
+
+
         document.getElementById('resultats').setAttribute('onchange','seepreview();');
 
+        
+        
         
 
         document.getElementsByClassName('valider')[0].textContent = "Modifier la recherche";
@@ -827,6 +902,7 @@ function create() {
         document.getElementsByClassName('valider')[0].setAttribute('onclick','modifier();');
     }
 
+    }
     
 }
 
@@ -837,6 +913,11 @@ function modifier() {
     document.getElementById('saisie2').style = "display : block;";
     document.getElementById('buttonvalider2').style = "display : block;";
 
+    document.getElementById("whattodo").textContent = "Commencez par choisir deux mots";
+    document.getElementById('buttonvalider1').setAttribute('onclick','tobutton1()');
+    document.getElementById('buttonvalider2').setAttribute('onclick','tobutton2()');
+    WordsSelected = 0;
+
     document.getElementsByClassName('valider')[0].textContent = "Valider";
     document.getElementsByClassName('valider')[0].setAttribute('onclick','create();');
     document.getElementsByClassName('valider')[0].style = "display : none;";
@@ -846,6 +927,32 @@ function modifier() {
 
     document.getElementById("saisie1").focus();
     whofocus = "saisie1";
+}
+
+function modifytext(lequel) {
+    if (WordsSelected != 0) {
+        WordsSelected -= 1;
+    }
+    console.log(WordsSelected);
+
+    
+    
+    document.getElementById("whattodo").textContent = "Commencez par choisir deux mots";
+
+    id = "saisie" + lequel;
+    document.getElementById(id).style = "display : block";
+    elem = document.getElementsByClassName("ligne mot" + lequel)[0];
+    elem.parentNode.removeChild(elem);
+    document.getElementById("buttonvalider" + lequel).textContent = "Ok";
+    document.getElementById("buttonvalider" + lequel).style = "background-color : #115099";
+
+    if (lequel == "1") {
+        document.getElementById("buttonvalider" + lequel).setAttribute('onclick', 'tobutton1()');
+    } else {
+        document.getElementById("buttonvalider" + lequel).setAttribute('onclick', 'tobutton2()');
+    }
+    
+    
 }
 
 
@@ -862,7 +969,7 @@ function createit(mot, lequel) {
     var container = document.createElement('div');
     container.className = "ligne mot" + lequel;
 
-    containere.appendChild(container);
+    containere.prepend(container);
 
     texte = mot
     taille = texte.length;
@@ -880,11 +987,28 @@ function createit(mot, lequel) {
         } else {
             btn.className = "case";
         }
+        
         container.appendChild(btn);
     }
 
     document.getElementById("saisie" + lequel).style = "display : none";
-    document.getElementById("buttonvalider" + lequel).style = "display : none";
+    document.getElementById("buttonvalider" + lequel).textContent = "Modifier";
+    document.getElementById("buttonvalider" + lequel).style = "background:linear-gradient(90deg, #4776e6 0%,#8e54e9 100% );";
+    
+    
+    
+
+    document.getElementById("buttonvalider" + lequel).setAttribute('onclick','modifytext(' + lequel +')');
+    WordsSelected += 1;
+    
+    console.log(WordsSelected);
+
+    if (WordsSelected == 2) {
+        
+        document.getElementById("whattodo").textContent = "Cliquez sur les cases sur lesquelles les mots se croisent";
+        document.getElementById("whattodo").style.color = "#115099";
+        
+    }
 }
 
 
@@ -897,7 +1021,9 @@ function tobutton1(){
 
     Mots["Mot1"] = texte;
 
+
     createit(texte, "1");
+    
 
     
 
@@ -909,6 +1035,7 @@ function tobutton2(){
     Mots["Mot2"] = texte
 
     createit(texte, "2");
+    
 
 }
 
@@ -917,10 +1044,27 @@ function seepreview() {
     mot1 = valeur.split(' ')[0];
     mot2 = valeur.split(' ')[1];
 
+    
+
     createit(mot1, "1");
     createit(mot2, "2");
 
     generate();
+
+    lemot2 = document.getElementsByClassName("mot2final")[0];
+    console.log(lemot2.childNodes.length)
+    urlmot2 = 'https://www.larousse.fr/dictionnaires/francais/' + valeur.split(' ')[1];
+    urlmot1 = 'https://www.larousse.fr/dictionnaires/francais/' + valeur.split(' ')[0];
+    for (var i = 0; i < lemot2.childNodes.length; i++){
+        var btn = lemot2.childNodes[i];
+        if (i != IndexsCaracs[1]) { 
+            chaine = 'gotolink("' + urlmot2 + '")'
+            btn.setAttribute("onclick", chaine);
+        } else {
+            chaine = 'gotolink("' + urlmot1 + '")'
+            btn.setAttribute("onclick", chaine);
+        }    
+    }
 }
 
 function basicfocus(){
