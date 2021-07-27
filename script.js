@@ -726,7 +726,13 @@ function generate() {
         
     }
     
-    var clientWidth = Math.round(Math.floor(parseFloat(parseFloat(document.getElementById("1-1").offsetWidth) / vh)) + 0.45);
+    var clientWidth = parseInt(document.getElementById("1-1").offsetWidth / vh);
+    if (clientWidth > 8.5) {
+        clientWidth = 10;
+    } else {
+        clientWidth = 7;
+    }
+
     console.log(clientWidth.toString() + "vh de largeur détecté.");
     widthtotake = clientWidth;
     
@@ -1099,3 +1105,240 @@ function deletetextlist(listid) {
     document.getElementById(listid[0]).focus();
     
 }
+
+let matrice = []
+
+function checktext() {
+    parent = document.getElementById("tableau").childNodes;
+    for (let divs = 1; divs < parent.length; divs++) {
+        for (let elindex = 1; elindex < parent[divs].childNodes.length; elindex++) {
+            if (parent[divs].childNodes[elindex].value == "-") {
+                parent[divs].childNodes[elindex].style.backgroundColor = "black";
+            } else {
+                if (matrice[divs - 1][elindex - 1] != parent[divs].childNodes[elindex].value) {
+                    matrice[divs - 1][elindex - 1] = parent[divs].childNodes[elindex].value.toUpperCase();
+                }
+                parent[divs].childNodes[elindex].style.backgroundColor = "white";
+            }
+        }
+    }
+    console.log(matrice);
+
+}
+
+function cacou(id) {
+    alert(id);
+}
+
+
+
+function createtable(taille) {
+    var body = document.getElementsByTagName("body")[0];
+    var tableau = document.createElement("table");
+    tableau.id = "tableau";
+    tableau.style = "margin-top : 50px;";
+    
+    for (let y = 0; y < taille + 1; y++) {
+        var row = document.createElement("div");
+        row.style = "display : flex; width : fit-content";
+        if (y == 0) {
+            row.style = "display : flex; width : fit-content; margin-left : 4vh";
+        } else {
+            matrice.push([]);
+        }
+        for (let x = 0; x < taille + 1; x++) {
+            if (y == 0) {
+                var cell = document.createElement("input");
+                cell.type = "text";
+                cell.style = "background-color : #bdbeb6; color: black; border : 0px; border-radius : 0px; overflow:hidden; height : auto; text-align : center; padding : 0px; width : 4vh; padding : 5px; border : 1px solid #bdbeb6";
+                cell.readOnly = true;
+                cell.value = (x+1).toString();
+                if (x != taille) {
+                    row.appendChild(cell);
+                }
+
+            } else if (x == 0) {
+                var cell = document.createElement("input");
+                cell.type = "text";
+                cell.style = "background-color : #bdbeb6; color: black; border : 0px; border-radius : 0px; overflow:hidden; height : auto; text-align : center; padding : 0px; width : 4vh";
+                cell.readOnly = true;
+                cell.value = (y).toString();
+                row.appendChild(cell);  
+            } else {
+                var cell = document.createElement("input");
+                cell.type = "text";
+                cell.style = "background-color : white; border : 1px solid black; border-radius : 0px; overflow:hidden; height : auto; padding : 5px; width : 4vh; height : 4vh; text-align : center; text-transform: capitalize;";
+                cell.maxLength="1";
+                
+                cell.addEventListener("focusout", checktext);
+                cell.tabIndex = y * taille + x;
+                id = (y * taille + x).toString();
+                
+                matrice[y - 1].push("");
+                //cell.setAttribute("onclick", 'checktext()')
+                row.appendChild(cell);
+
+                
+
+            }
+            
+        }
+        tableau.appendChild(row)
+    }
+    body.appendChild(tableau);
+
+    location.href = "#";
+    location.href = "#tableau";
+    
+    divfinal = document.createElement("div")
+    divfinal.id = "divresultat";
+    divfinal.innerHTML = '<button id="validerlagrille" class="valider">Valider</button>';
+    divfinal.style = "width : 100%; display : flex; justify-content : center; display: flex; align-items: center;  padding-bottom: 50px;";
+
+
+    document.getElementsByTagName("body")[0].appendChild(divfinal);
+
+
+    
+}
+
+document.onkeydown  = function (e) {
+    var path = window.location.pathname;
+    var page = path.split("/").pop();
+
+    if (page == "croise4mots.html") {
+        e = e || window.event;
+
+        function nefocus(nouveauindex){
+            document.getElementById("tableau");
+           elactuel = document.activeElement;
+           ntabindex = nouveauindex;
+
+           diference = nouveauindex - document.activeElement.tabIndex;
+           complicated = false;
+           if (diference > 14 || diference < -14)
+            complicated = true;
+           console.log(ntabindex);
+
+           if (complicated) {
+            parent = elactuel.parentNode.parentNode.childNodes;
+            for (let divs = 0; divs < parent.length; divs++) {
+                for (let elindex = 0; elindex < parent[divs].childNodes.length; elindex++) {
+                    if (parent[divs].childNodes[elindex].tabIndex == ntabindex) {
+                        parent[divs].childNodes[elindex].focus();
+                    }
+                }
+            }
+            
+           } else {
+            parent = elactuel.parentNode.childNodes;
+            for (let elindex = 0; elindex < parent.length; elindex++) {
+                if (parent[elindex].tabIndex == ntabindex) {
+                    parent[elindex].focus();
+                }
+            }
+           }
+           
+        }
+        //checktext();
+        if (e.keyCode == '39') {
+           nefocus(document.activeElement.tabIndex + 1)
+        }
+        if (e.keyCode == '37') {
+            nefocus(document.activeElement.tabIndex - 1)
+         }
+         if (e.keyCode == '38') {
+            nefocus(document.activeElement.tabIndex - 15)
+         }
+         if (e.keyCode == '40') {
+            nefocus(document.activeElement.tabIndex + 15)
+         }
+    }
+    
+    // use e.keyCode
+};
+
+/*
+
+function getwords() {
+    global matrice
+    global dimensions
+    MotsHorrizontaux = []
+    begin = ""
+
+    for y in range(0, dimensions) :
+        begin = ""
+        FirstWordDetector = False
+        for x in range(0, dimensions):
+            if FirstWordDetector == True :
+                if x + 1 < dimensions :
+                    begin += matrice[y][x]
+                    if matrice[y][x + 1] == "" or matrice[y][x + 1] == "-":
+                        if len(begin) >= 3:
+                            tuplee = ((x - len(begin) + 1, y), begin)
+                            MotsHorrizontaux.append(tuplee)
+                        begin = ""
+                        FirstWordDetector = False
+                else :
+                    if matrice[y][x] != "" or matrice[y][x] != "-":
+                        begin +=  matrice[y][x]
+                        if len(begin) >= 3:
+                            tuplee = ((x - len(begin) + 1, y), begin)
+                            MotsHorrizontaux.append(tuplee)
+                        begin = ""
+                        FirstWordDetector = False
+            
+            elif (matrice[y][x] != "" or matrice[y][x] != "-") and FirstWordDetector == False:
+                if x + 1 < dimensions :
+                    if matrice[y][x + 1] != "" or matrice[y][x + 1] != "-": 
+                        FirstWordDetector = True
+                        begin += matrice[y][x]
+            
+
+    print("Mots Horrizontaux :", MotsHorrizontaux)
+
+    
+    
+    MotsVerticaux = []
+    begin = ""
+    FirstWordDetector = False
+
+    for x in range(0, dimensions) :
+        
+        for y in range(0, dimensions):
+            if FirstWordDetector == True :
+                
+                if y + 1 < dimensions :
+                    begin +=  matrice[y][x]
+                    if matrice[y + 1][x] == "" or matrice[y + 1][x] == "-":
+                        FirstWordDetector = False
+                        if len(begin) >= 3:
+                            tuplee = ((x, y - len(begin) + 1), begin)
+                            MotsVerticaux.append(tuplee)
+                        begin = ""         
+                else :
+                    if matrice[y][x] != "" or matrice[y][x] != "-":
+                        begin +=  matrice[y][x]
+                        if len(begin) >= 3:
+                            tuplee = ((x, y - len(begin) + 1), begin)
+                            MotsVerticaux.append(tuplee)
+                        begin = ""
+                        FirstWordDetector = False
+                    
+            elif (matrice[y][x] != "" and matrice[y][x] != "-") and FirstWordDetector == False:
+                if y + 1 < dimensions :
+                    if matrice[y + 1][x] != "" and matrice[y + 1][x] != "-":
+                        FirstWordDetector = True
+                        begin += matrice[y][x]
+                        
+
+            
+                
+
+    print("Mots Verticaux :", MotsVerticaux)
+
+    return (MotsHorrizontaux, MotsVerticaux)
+}
+
+*/
+       
