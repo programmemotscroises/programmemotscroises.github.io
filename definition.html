@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mots croisés</title>
+    <link href="style.css" rel="stylesheet">
+    <link rel="icon" href="./images/logo.png">
+</head>
+<script src="./script.js"></script>
+<script src="./base.js"></script>
+<body>
+    <div class="title">
+        <h1>Résolveur de mots croisés</h1>
+        <h4>Un site de Axel Thauvin</h4>
+    </div>
+    <div class="liens">
+        <a href="./index.html"><button >Trouver un mot avec des lettres connues</button></a>
+        <a href="./croisement.html"><button>Croiser deux mots</button></a>
+        <a href="./definition.html"><button id="selected">Trouver un mot par sa définition</button></a>
+    </div>
+    <h4 style="font-weight: lighter;">Comment trouver un mot seulement avec sa définition ?<br> 
+        - Tapez votre définition<br>
+        - Récupérez la liste de mots trouvés, triés par nombre de lettres.
+    
+        
+    </h4>
+
+    
+
+    
+    <div class="look">
+
+        <div class="shearch2">
+            <h2 id="consigne">Tapez votre définition :</h2>
+            <input type="text" id="saisie" autofocus onkeyuponpaste oninput="detectchanged()" onfocus="lastfocusset(this.id)">
+            <button class="valider" onclick="go()">Valider</button>
+        </div>
+    </div>
+
+        
+        
+       
+        
+        
+    
+
+
+</body>
+
+
+
+</html>
