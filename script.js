@@ -1304,19 +1304,48 @@ document.onkeydown  = function (e) {
            }
            
         }
-        if (e.keyCode >= '65' && e.keyCode <= '90' && document.activeElement.value != "") {
-            nefocus(document.activeElement.tabIndex + 1)
+        
+        function addCaractere(carac) {
+            function insertAtCursor(myField, myValue) {
+                
+                if (document.selection) {
+                }
+                else if (myField.selectionStart || myField.selectionStart == '0') {
+                    var startPos = myField.selectionStart;
+                    var endPos = myField.selectionEnd;
+                    if (myField.value[startPos] == undefined) {
+                        nefocus(document.activeElement.tabIndex + 1)
+                    }
+                } else {
+                    nefocus(document.activeElement.tabIndex + 1)  
+                }  
+            }
+            insertAtCursor(document.activeElement, carac);  
+        }
+        
+        
+        if (e.keyCode >= '65' && e.keyCode <= '90' && document.activeElement.value != "" ) {
+            addCaractere(e.key);
+            //nefocus(document.activeElement.tabIndex + 1)
         }
 
+        
+
         if ((e.keyCode == '106' || e.keyCode == '111' || e.keyCode == '51') && document.activeElement.value != "") {
-            nefocus(document.activeElement.tabIndex + 1)
+            addCaractere(e.key);
+
+            
+            
+            
         }
+
+
 
 
         if (e.keyCode == '8' && document.activeElement.value == "") {
             nefocus(document.activeElement.tabIndex - 1)
         }
-        //checktext();
+        
         if (e.keyCode == '39') {
            nefocus(document.activeElement.tabIndex + 1)
         }
