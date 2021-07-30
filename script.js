@@ -1,3 +1,4 @@
+
 // First we get the viewport height and we multiple it by 1% to get a value for a vh unit
 let vh = window.innerHeight * 0.01;
 // Then we set the value in the --vh custom property to the root of the document
@@ -1088,6 +1089,24 @@ basicfocus();
 function deletetext(idsaisie) {
     document.getElementById(idsaisie).value = "";
     document.getElementById(idsaisie).focus();
+
+    if (document.getElementsByClassName("ask")) {
+        elem = document.getElementsByClassName("ask")[0];
+        elem.parentNode.removeChild(elem);
+        document.getElementsByClassName("result")[0].style = "display : block";
+
+        
+        document.getElementById("saisie").removeAttribute('readonly');
+        document.getElementById("saisie").focus();
+
+        
+
+        var validerbuttonleft = document.getElementsByClassName("valider")[0];
+        validerbuttonleft.style = "background-color : #11998e; cursor : pointer";
+        validerbuttonleft.disabled = false;
+        
+       
+    }
 }
 
 function deletetextlist(listid) {
@@ -1128,15 +1147,18 @@ function resettable() {
 }
 
 function decaltext(elem, taille){
+
+    TailleX = taille[0]
+    TailleY = taille[1];
     
     for (let i = elem.parentNode.childNodes.length - 1; i > 1 ; i -= 1) {
         elem.parentNode.childNodes[i].value = elem.parentNode.childNodes[i - 1].value
     }
 
     matrice = []
-    for (let y = 1; y < taille + 1; y++) {
+    for (let y = 1; y < TailleY + 1; y++) {
         matrice.push([]);
-        for (let x = 1; x < taille + 1; x++) {
+        for (let x = 1; x < TailleX + 1; x++) {
             matrice[y - 1].push(parent[y].childNodes[x]);
         }
 
@@ -1144,6 +1166,10 @@ function decaltext(elem, taille){
 }
 
 function decaltextenbas(elem, taille){
+
+    TailleX = taille[0]
+    TailleY = taille[1];
+
     parent = document.getElementById("tableau").childNodes;
 
     mparent = elem.parentNode.childNodes;
@@ -1159,9 +1185,9 @@ function decaltextenbas(elem, taille){
     }
 
     matrice = []
-    for (let y = 1; y < taille + 1; y++) {
+    for (let y = 1; y < TailleY + 1; y++) {
         matrice.push([]);
-        for (let x = 1; x < taille + 1; x++) {
+        for (let x = 1; x < TailleX + 1; x++) {
             matrice[y - 1].push(parent[y].childNodes[x]);
         }
 
@@ -1173,32 +1199,89 @@ function decaltextenbas(elem, taille){
 
 
 
+
+
 function createtable(taille) {
+    var nombre;
+    if (document.getElementById("saisiedim").value != "") {
+        
+        chaine = document.getElementById("saisiedim").value;
+        
+        if (chaine.includes("X")) {
+            nombre = chaine.split('X');
+
+        } else if (chaine.includes("x")) {
+            nombre = chaine.split('x');
+
+        } else if (chaine.includes(" ")) {
+            nombre = chaine.split(' ');
+
+        } else if (chaine.includes("*")) {
+            nombre = chaine.split('*');
+
+        } else {
+            nombre = [chaine, chaine];
+        }
+
+        for (el in nombre) {
+            nombre[el] = parseInt(nombre[el]);
+        }
+
+        
+        
+    }
+
+    if (nombre == null) {
+        nombre = [taille, taille]
+    }
+
+    console.log(nombre);
+
+    TailleY = nombre[1];
+    TailleX = nombre[0];
+
     var body = document.getElementsByTagName("body")[0];
     var tableau = document.createElement("table");
     tableau.id = "tableau";
     tableau.style = "margin-top : 50px;";
     
-    for (let y = 0; y < taille + 1; y++) {
+    
+    taillecase = 2.4;
+    taillepolice= 2.4;
+
+
+
+    taillecase = taillecase.toString();
+    for (let y = 0; y < TailleY + 1; y++) {
         var row = document.createElement("div");
         row.style = "display : flex; width : fit-content";
         if (y == 0) {
             row.style = "display : flex; width : fit-content; margin-left : 4vh";
+            if (window.matchMedia("only screen and (hover: none) and (pointer: coarse)").matches) {
+                row.style.marginLeft = "2vh";
+                
+
+            }
         } else {
             matrice.push([]);
         }
-        for (let x = 0; x < taille + 1; x++) {
+        for (let x = 0; x < TailleX + 1; x++) {
             if (y == 0) {
                 var cell = document.createElement("input");
                 cell.type = "text";
                 cell.style = "background-color : #bdbeb6; color: black; border : 0px; border-radius : 0px; overflow:hidden; height : auto; text-align : center; padding : 0px; width : 4vh; padding : 5px; border : 1px solid #bdbeb6; cursor : pointer";
+                if (window.matchMedia("only screen and (hover: none) and (pointer: coarse)").matches) {
+                    cell.style.width = taillecase + "vh";
+                    cell.style.fontSize = taillepolice + "vh";
+                    
+                }
                 cell.readOnly = true;
                 idcool = "hautscases" + (x+1).toString();
                 cell.id = idcool
                 cell.value = (x+1).toString();
-                if (x != taille) {
+                if (x != TailleX) {
                     row.appendChild(cell);
-                    cell.setAttribute('onclick','decaltextenbas(' + idcool +  ',' + taille + ' )');
+                    cell.setAttribute('onclick','decaltextenbas(' + idcool +  ',' + nombre + ' )');
                 }
 
 
@@ -1206,6 +1289,10 @@ function createtable(taille) {
                 var cell = document.createElement("input");
                 cell.type = "text";
                 cell.style = "background-color : #bdbeb6; color: black; border : 0px; border-radius : 0px; overflow:hidden; height : auto; text-align : center; padding : 0px; width : 4vh; cursor : pointer";
+                if (window.matchMedia("only screen and (hover: none) and (pointer: coarse)").matches) {
+                    cell.style.width = taillecase + "vh";
+                    cell.style.fontSize = taillepolice + "vh";
+                }
                 cell.readOnly = true;
                 cell.value = (y).toString();
                 idcool = "leftCases" + y.toString();
@@ -1217,11 +1304,15 @@ function createtable(taille) {
                 var cell = document.createElement("input");
                 cell.type = "text";
                 cell.style = "background-color : white; border : 1px solid black; border-radius : 0px; overflow:hidden; height : auto; padding : 5px; width : 4vh; height : 4vh; text-align : center; text-transform: capitalize;";
+                if (window.matchMedia("only screen and (hover: none) and (pointer: coarse)").matches) {
+                    cell.style.width = taillecase + "vh";
+                    cell.style.fontSize = taillepolice + "vh";
+                }
                 cell.maxLength="1";
                 
                 cell.addEventListener("focusout", checktext);
-                cell.tabIndex = y * taille + x;
-                id = (y * taille + x).toString();
+                cell.tabIndex = y * TailleY + x;
+                id = (y * TailleY + x).toString();
                 
                 matrice[y - 1].push("");
                 //cell.setAttribute("onclick", 'checktext()')
@@ -1246,9 +1337,7 @@ function createtable(taille) {
     divfinal.style = "position: absolute;top: 150%; left: 10%;";
 
 
-    document.getElementById("tableau").appendChild(divfinal);
-
-    document.getElementById("validerlagrille").setAttribute('onclick','mainMotcroise4()');
+    
 
     reseter = document.createElement("button")
     reseter.id = "resetlagrille";
@@ -1256,9 +1345,23 @@ function createtable(taille) {
     reseter.className = "valider";
     reseter.style = "position: absolute;top: 160%; left: 15px; background-color : #e53935";
 
+    if (window.matchMedia("only screen and (hover: none) and (pointer: coarse)").matches) {
 
-    document.getElementById("tableau").appendChild(reseter);
+        divfinaleeee = document.createElement("div");
+        divfinaleeee.style = "display: flex; flex-direction : column; justify-content : center; text-align : center";
+        document.getElementsByTagName("body")[0].appendChild(divfinaleeee);
+        divfinal.style = "";
+        divfinaleeee.appendChild(divfinal);
+        reseter.style = "background-color : #e53935";
+        divfinaleeee.appendChild(reseter);
 
+    } else {
+        document.getElementById("tableau").appendChild(divfinal);
+        document.getElementById("tableau").appendChild(reseter);
+    }
+    
+    document.getElementById("validerlagrille").setAttribute('onclick','mainMotcroise4()');
+    
     document.getElementById("resetlagrille").setAttribute('onclick','resettable()');
     
 
@@ -1549,7 +1652,8 @@ function main(resultat) {
 
         if (listefinale.length == 0) {
             error = "pasdupremiercoup";
-            return distanceHamming2(motatrouver, diff + 1, error)
+            //return distanceHamming2(motatrouver, diff + 1, error)
+            return [];
         } else {
             return listefinale;
         }
@@ -1777,63 +1881,129 @@ function mainMotcroise4(){
 
     console.log(final)
     console.log(final.length, "résultats");
+    if (window.matchMedia("only screen and (hover: none) and (pointer: coarse)").matches) {
 
-    if (final.length == 0) {
+        divfinaleeee = document.createElement("div");
+        divfinaleeee.style = "display: flex; justify-content : center; text-align : center; flex-direction : column";
+        document.getElementsByTagName("body")[0].appendChild(divfinaleeee)
+
+
+        if (final.length == 0) {
+            textecool = document.createElement("h1")
+            textecool.id = "letitre";
+            textecool.style = " color : #115099; font-size : 3vh";
+            textecool.textContent = "Il y a aucun croisement possible";
+            textecool.style.color = "rgb(229, 57, 53)";
+            textecool.style.color.over;
+            divfinaleeee.appendChild(textecool);
+            location.href = "";
+            location.href = "#letitre";
+        } else {
+            
+            previewresultatfinal4mots(final[indexlistealire], mots);
+        
+            buttonnext = document.createElement("button")
+            buttonnext.id = "nextateur";
+            buttonnext.textContent = "Suivant";
+            buttonnext.className = "internet";
+        
+            if (document.getElementById("nextateur")) {
+                elem = document.getElementById("nextateur");
+                elem.parentNode.removeChild(elem);
+            }
+        
+            divfinaleeee.appendChild(buttonnext);
+        
+            textecool = document.createElement("h1")
+            textecool.id = "letitre";
+            textecool.style = "color : #115099; font-size : 3vh";
+            if (final.length == 1) {
+                textecool.textContent = "Il y a 1 croisement possible";
+            } else {
+                textecool.textContent = "Il y a " + final.length.toString() + " croisements possibles";
+            }
+        
+            if (document.getElementById("letitre")) {
+                elem = document.getElementById("letitre");
+                elem.parentNode.removeChild(elem);
+            }
+        
+            divfinaleeee.appendChild(textecool);
+        
+            textecool2 = document.createElement("h1")
+            textecool2.id = "statuseeee";
+            textecool2.style = "color : #115099; font-size : 3vh";
+            textecool2.textContent = "1 / " + final.length.toString();
+        
+            if (document.getElementById("statuseeee")) {
+                elem = document.getElementById("statuseeee");
+                elem.parentNode.removeChild(elem);
+            }
+        
+            divfinaleeee.appendChild(textecool2);
+        
+            document.getElementById("nextateur").addEventListener("click", next.bind(null,final, mots));  
+        }
+
+    } else {
+        if (final.length == 0) {
+            textecool = document.createElement("h1")
+            textecool.id = "letitre";
+            textecool.style = "position: absolute;top: 140%; right: 5%; color : #115099; font-size : 3vh";
+            textecool.textContent = "Il y a aucun croisement possible";
+            textecool.style.color = "rgb(229, 57, 53)";
+            textecool.style.color.over;
+            document.getElementById("tableau").appendChild(textecool);
+        } else {
+        
+        
+        previewresultatfinal4mots(final[indexlistealire], mots);
+    
+        buttonnext = document.createElement("button")
+        buttonnext.id = "nextateur";
+        buttonnext.textContent = "Suivant";
+        buttonnext.className = "internet";
+        buttonnext.style = "position: absolute;top: 150%; right: 10%;";
+    
+        if (document.getElementById("nextateur")) {
+            elem = document.getElementById("nextateur");
+            elem.parentNode.removeChild(elem);
+        }
+    
+        document.getElementById("tableau").appendChild(buttonnext);
+    
         textecool = document.createElement("h1")
         textecool.id = "letitre";
         textecool.style = "position: absolute;top: 140%; right: 5%; color : #115099; font-size : 3vh";
-        textecool.textContent = "Il y a aucun croisement possible";
-        textecool.style.color = "rgb(229, 57, 53)";
-        textecool.style.color.over;
+        if (final.length == 1) {
+            textecool.textContent = "Il y a 1 croisement possible";
+        } else {
+            textecool.textContent = "Il y a " + final.length.toString() + " croisements possibles";
+        }
+    
+        if (document.getElementById("letitre")) {
+            elem = document.getElementById("letitre");
+            elem.parentNode.removeChild(elem);
+        }
+    
         document.getElementById("tableau").appendChild(textecool);
-    } else {
     
+        textecool2 = document.createElement("h1")
+        textecool2.id = "statuseeee";
+        textecool2.style = "position: absolute;top: 145%; right: 5%; color : #115099; font-size : 3vh";
+        textecool2.textContent = "1 / " + final.length.toString();
     
-    previewresultatfinal4mots(final[indexlistealire], mots);
-
-    buttonnext = document.createElement("button")
-    buttonnext.id = "nextateur";
-    buttonnext.textContent = "Suivant";
-    buttonnext.className = "internet";
-    buttonnext.style = "position: absolute;top: 150%; right: 10%;";
-
-    if (document.getElementById("nextateur")) {
-        elem = document.getElementById("nextateur");
-        elem.parentNode.removeChild(elem);
+        if (document.getElementById("statuseeee")) {
+            elem = document.getElementById("statuseeee");
+            elem.parentNode.removeChild(elem);
+        }
+    
+        document.getElementById("tableau").appendChild(textecool2);
+       
+        document.getElementById("nextateur").addEventListener("click", next.bind(null,final, mots));  
+        }
     }
-
-    document.getElementById("tableau").appendChild(buttonnext);
-
-    textecool = document.createElement("h1")
-    textecool.id = "letitre";
-    textecool.style = "position: absolute;top: 140%; right: 5%; color : #115099; font-size : 3vh";
-    if (final.length == 1) {
-        textecool.textContent = "Il y a 1 croisement possible";
-    } else {
-        textecool.textContent = "Il y a " + final.length.toString() + " croisements possibles";
-    }
-
-    if (document.getElementById("letitre")) {
-        elem = document.getElementById("letitre");
-        elem.parentNode.removeChild(elem);
-    }
-
-    document.getElementById("tableau").appendChild(textecool);
-
-    textecool2 = document.createElement("h1")
-    textecool2.id = "statuseeee";
-    textecool2.style = "position: absolute;top: 145%; right: 5%; color : #115099; font-size : 3vh";
-    textecool2.textContent = "1 / " + final.length.toString();
-
-    if (document.getElementById("statuseeee")) {
-        elem = document.getElementById("statuseeee");
-        elem.parentNode.removeChild(elem);
-    }
-
-    document.getElementById("tableau").appendChild(textecool2);
-   
-    document.getElementById("nextateur").addEventListener("click", next.bind(null,final, mots));  
-    }
+    
         
 }
 
