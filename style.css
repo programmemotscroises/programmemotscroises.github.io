@@ -333,7 +333,7 @@ button:hover {
 .buttons button {
     color: white;
     width: fit-content;
-    background-color: #093028;
+    /*background-color: #093028;*/
     margin-left: 20px;
     margin-right: 20px;
 }
@@ -349,6 +349,10 @@ button:hover {
 
 .ask .valider {
     background-color: #115099;
+}
+
+#saisiedim {
+    width: 30%;
 }
 
 @media only screen and (hover: none) and (pointer: coarse){
@@ -511,6 +515,28 @@ button:hover {
         padding-bottom: 50px;
     }
 
+    .contentsaisie {
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin-top: 50px;
+    }
+    
+    #saisiedim {
+        margin-top: 50px;
+        width: 80%;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    #saisiedim::placeholder {
+        font-size: 2.5vh;
+        text-align: center;
+    }
+
+    
+
     
 }
 
@@ -570,4 +596,42 @@ table {
     margin-right: auto;
     /* display: block; */
     
+}
+
+
+input::placeholder {
+    font-style: italic;
+}
+
+
+.contentsaisie {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+}
+
+.contentsaisie button{
+    margin: 0;
+    /*background:linear-gradient(90deg, #2b5876 0%,#4e4376 100% );*/
+    color: white;
+    background-color: #403764;
+    transition: background-color 0.3s;
+}
+
+.contentsaisie button:hover{ 
+    opacity: 100%;
+    background-color: #376f94;
+}
+
+
+
+.adderpro {
+    background-color: #2b5c6d;
+    transition: background-color 0.3s;
+}
+
+.adderpro:hover {
+    opacity: 100%;
+    background-color: #3062be;
 }

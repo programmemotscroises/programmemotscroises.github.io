@@ -24,14 +24,17 @@
     <div class="buttons">
         <h5 style="color: #115099;">* : Lettre quelconque<br>/ : Voyelle<br># : Consonne</h5>
         <div>
-            <button onclick="addCaracter('*');">*</button>
-            <button onclick="addCaracter('/');">/</button>
-            <button onclick="addCaracter('#');">#</button>
-            <button onclick="deletetextlist(['saisie1', 'saisie2']);" id="deleter">&#x1F5D1</button>
+            <button class="adderpro" onclick="addCaracter('*');">*</button>
+            <button class="adderpro" onclick="addCaracter('/');">/</button>
+            <button class="adderpro" onclick="addCaracter('#');">#</button>
+            <button onclick="deletetext('saisiedim');" id="deleter">&#x1F5D1</button>
         </div>
     </div>
+    <div class="contentsaisie">
+        <button onclick="createtable(15);" >Créer le tableau</button>
+        <input type="text" id="saisiedim" placeholder="Dimensions : (par défaut 15)" style="margin-left: 20px;" onfocus="lastfocusset(this.id)">
+    </div>
     
-    <button onclick="createtable(15);" style="color: black;">Créer tableau</button>
 
 
 </body>

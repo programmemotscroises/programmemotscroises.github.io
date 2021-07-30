@@ -40,10 +40,10 @@
     <div class="buttons">
         <h5 style="color: #115099;">* : Lettre quelconque<br>/ : Voyelle<br># : Consonne</h5>
         <div>
-            <button onclick="addCaracter('*');">*</button>
-            <button onclick="addCaracter('/');">/</button>
-            <button onclick="addCaracter('#');">#</button>
-            <button onclick="deletetextlist(['saisie1', 'saisie2']);" id="deleter">&#x1F5D1</button>
+            <button class="adderpro" onclick="addCaracter('*');">*</button>
+            <button class="adderpro" onclick="addCaracter('/');">/</button>
+            <button class="adderpro" onclick="addCaracter('#');">#</button>
+            <button class="adderpro" onclick="deletetextlist(['saisie1', 'saisie2']);" id="deleter">&#x1F5D1</button>
         </div>
     </div>
     <h1 id="whattodo">Commencez par choisir deux mots</h1>
@@ -51,13 +51,13 @@
     
     <div class="final" style=" margin-left: 20px; margin-bottom: 20px;">
         <div class="saisiee1" >
-            <input type="text" id="saisie1" autofocus onfocus="lastfocusset(this.id)">
+            <input type="text" id="saisie1" placeholder="Premier mot" autofocus onfocus="lastfocusset(this.id)">
             <button class="valider2" id="buttonvalider1" onclick="tobutton1();">Ok</button>
         </div>
 
         <div class="saisiee2">
-            <input type="text" id="saisie2"onfocus="lastfocusset(this.id)">
-            <button class="valider2" id="buttonvalider2" onclick="tobutton2();">Ok</button>
+            <input type="text" id="saisie2" placeholder="Deuxième mot" onfocus="lastfocusset(this.id)">
+            <button class="valider2"  id="buttonvalider2" onclick="tobutton2();">Ok</button>
         </div>
         
         

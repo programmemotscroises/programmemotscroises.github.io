@@ -36,18 +36,18 @@
     <div class="buttons">
         <h5 style="color: #115099;">* : Lettre quelconque<br>/ : Voyelle<br># : Consonne<br>& : Lettres interdites<br>@ : Lettres permises</h5>
         <div>
-            <button onclick="addCaracter('*');">*</button>
-            <button onclick="addCaracter('/');">/</button>
-            <button onclick="addCaracter('#');">#</button>
-            <button onclick="addCaracter('&');">&</button>
-            <button onclick="addCaracter('@');">@</button>
+            <button class="adderpro"  onclick="addCaracter('*');">*</button>
+            <button class="adderpro"  onclick="addCaracter('/');">/</button>
+            <button class="adderpro"  onclick="addCaracter('#');">#</button>
+            <button class="adderpro"  onclick="addCaracter('&');">&</button>
+            <button class="adderpro"  onclick="addCaracter('@');">@</button>
         </div>
     </div>
     <div class="look">
 
         <div class="shearch">
             <h2 id="consigne">Critère pour le mot cherché :</h2>
-            <span> <input type="text" id="saisie" autofocus onkeyuponpaste oninput="detectchanged()" onfocus="lastfocusset(this.id)"> <button onclick="deletetext('saisie');" id="deleter" style="margin: 0px;">&#x1F5D1</button></span>
+            <span> <input type="text" id="saisie" placeholder="Exemple : T*&/e*" autofocus onkeyuponpaste oninput="detectchanged()" onfocus="lastfocusset(this.id)"> <button onclick="deletetext('saisie');" id="deleter" style="margin: 0px;">&#x1F5D1</button></span>
             
             <button class="valider" onclick="go()">Valider</button>
         </div>
