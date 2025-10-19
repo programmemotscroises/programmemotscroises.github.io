@@ -125,7 +125,8 @@
     dom.title.textContent = `Résultats (${exactItems.length})`;
 
     const renderItem = (item) => {
-      const badgeLabel = item.score === 0 ? "Exact" : `Hamming +${item.score}`;
+      const badgeLabel =
+        item.score === 0 ? "Exact" : `Proximité +${item.score}`;
       let badgeClass = "exact";
       if (item.score === 1) badgeClass = "h1";
       else if (item.score === 2) badgeClass = "h2";
@@ -148,7 +149,7 @@
     if (nearItems.length > 0) {
       const sep = document.createElement("div");
       sep.className = "separator";
-      sep.textContent = "Proches (Hamming +1 et plus)";
+      sep.textContent = "Proches (Proximité +1 et plus)";
       dom.results.appendChild(sep);
       nearItems.forEach(renderItem);
     }
