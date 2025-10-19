@@ -1,70 +1,128 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mots croisés</title>
-    <link href="style.css" rel="stylesheet">
-    <link rel="icon" href="./images/logo.png">
-</head>
-<script src="./script.js"></script>
-<script src="./base.js"></script>
-<body>
-    <div class="title">
-        <h1>Résolveur de mots croisés</h1>
-        <h4>Un site de Axel Thauvin</h4>
-    </div>
-    <div class="liens">
-        <a href="./index.html"><button id="selected">Trouver un mot avec des lettres connues</button></a>
-        <a href="./croisement.html"><button>Croiser deux mots</button></a>
-        <a href="./croise4mots.html"><button>Croiser quatre mots</button></a>
-    </div>
-    <h4 style="font-weight: lighter;">Comment trouver des mots avec seulement quelques lettres connues ?<br> 
-        - Tapez des * (étoiles) à la place de chaque lettre ignorée<br>
-        - Tapez des / (barre oblique) à la place de chaque voyelle<br>
-        - Tapez des # (dièse) à la place de chaque consonne<br>
-        - Tapez des & (esperluette) pour spécifier une liste de lettres interdites<br>
-        - Tapez des @ (arobase) pour spécifier une liste de lettres permises<br>
-        <br>    
-        Par exemple si vous cherchez le mot t#/c* vous obtiendrez une liste de mots de 5 lettres correspondant à votre recherche comme les mots TRACA ou TRACE. De même, si vous tapez pl/&**, et spécifiez dans la liste des mots interdits "oal", vous obtiendrez une liste contenant les mots de 6 lettres tels que PLAINE, PLOMBS, … <br>
-        <br>
-        Vous pouvez plusieurs  fonctions à la fois : t*&/e*<br>
-        <br>
-        Si le programme ne trouve aucun résultat correspondant à vos critères, il cherchera les mots "voisins", autrement dit, ceux qui correspondent le mieux aux critères rentrés. <br> Par exemple, si vous cherchez le mot t////a, le programme renverra un mot voisin, par exemple : TABOUA, car ici seul le B est une consonne. 
-    </h4>
-    <div class="buttons">
-        <h5 style="color: #115099;">* : Lettre quelconque<br>/ : Voyelle<br># : Consonne<br>& : Lettres interdites<br>@ : Lettres permises</h5>
-        <div>
-            <button class="adderpro"  onclick="addCaracter('*');">*</button>
-            <button class="adderpro"  onclick="addCaracter('/');">/</button>
-            <button class="adderpro"  onclick="addCaracter('#');">#</button>
-            <button class="adderpro"  onclick="addCaracter('&');">&</button>
-            <button class="adderpro"  onclick="addCaracter('@');">@</button>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Résolveur de mots croisés</title>
+    <link rel="icon" href="./images/logo.png" />
+    <link href="./modern.css" rel="stylesheet" />
+  </head>
+  <body>
+    <header class="app-header">
+      <div class="brand">
+        <img src="./images/logo.png" alt="Logo" class="brand-logo" />
+        <div class="brand-txt">
+          <h1>Résolveur</h1>
+          <p>par Axel Thauvin</p>
         </div>
-    </div>
-    <div class="look">
+      </div>
+      <button id="menuBtn" class="menu-btn" aria-label="Ouvrir le menu">
+        <span class="menu-icon"></span>
+      </button>
+      <nav class="nav">
+        <a class="nav-link active" href="./index.html">Recherche</a>
+        <a class="nav-link" href="./croisement.html">Croiser deux mots</a>
+        <a class="nav-link" href="./croise4mots.html">Croiser quatre mots</a>
+      </nav>
+    </header>
 
-        <div class="shearch">
-            <h2 id="consigne">Critère pour le mot cherché :</h2>
-            <span> <input type="text" id="saisie" placeholder="Exemple : T*&/e*" autofocus onkeyuponpaste oninput="detectchanged()" onfocus="lastfocusset(this.id)"> <button onclick="deletetext('saisie');" id="deleter" style="margin: 0px;">&#x1F5D1</button></span>
-            
-            <button class="valider" onclick="go()">Valider</button>
+    <main class="container">
+      <section class="card">
+        <div class="inputs">
+          <label class="field">
+            <span>Mot cible (modèle)</span>
+            <input
+              id="pattern"
+              type="text"
+              inputmode="latin"
+              autocomplete="off"
+              spellcheck="false"
+              placeholder="Ex: T*E* (lettre, * joker, / voyelle, # consonne)"
+            />
+          </label>
+
+          <!-- Boutons d'aide à la saisie -->
+          <div class="input-helpers">
+            <button
+              class="btn helper-btn"
+              data-char="*"
+              title="Joker (n'importe quelle lettre)"
+            >
+              *
+            </button>
+            <button
+              class="btn helper-btn"
+              data-char="/"
+              title="Voyelle (A,E,I,O,U,Y)"
+            >
+              /
+            </button>
+            <button class="btn helper-btn" data-char="#" title="Consonne">
+              #
+            </button>
+            <button
+              class="btn danger helper-btn"
+              data-action="clear"
+              title="Tout effacer"
+            >
+              🗑️
+            </button>
+          </div>
+
+          <div class="row">
+            <label class="field">
+              <span>Lettres permises (optionnel)</span>
+              <input
+                id="allowed"
+                type="text"
+                inputmode="latin"
+                autocomplete="off"
+                spellcheck="false"
+                placeholder="Ex: AEIOU"
+              />
+            </label>
+            <label class="field">
+              <span>Lettres interdites (optionnel)</span>
+              <input
+                id="forbidden"
+                type="text"
+                inputmode="latin"
+                autocomplete="off"
+                spellcheck="false"
+                placeholder="Ex: BRMN"
+              />
+            </label>
+          </div>
+          <div class="actions">
+            <button id="searchBtn" class="btn primary">Rechercher</button>
+            <button id="clearBtn" class="btn">Effacer</button>
+          </div>
+          <p class="hint">
+            Astuces: * = joker, / = voyelle, # = consonne. La recherche utilise
+            la distance de Hamming: si aucun mot exact, les meilleures
+            correspondances seront proposées.
+          </p>
         </div>
-        
-        <div class="result">
-            <h2 id="textresultat">Les résultats seront affichés ici :</h2>
-            <select id="resultats">
-                
-            </select>
-            
+      </section>
+
+      <section class="card results">
+        <div class="results-header">
+          <h2 id="resultsTitle">Résultats</h2>
+          <div id="summary" class="summary"></div>
         </div>
-        
-    </div>
-    
+        <div id="results" class="results-list" aria-live="polite"></div>
+      </section>
+    </main>
 
-</body>
+    <footer class="footer">
+      <small>&copy; <span id="year"></span> Axel Thauvin</small>
+    </footer>
 
-
-
+    <!-- Base de mots (populate localStorage) -->
+    <script src="./base.js"></script>
+    <!-- App minimaliste -->
+    <script src="./app.js"></script>
+    <script src="./ui.js"></script>
+  </body>
 </html>

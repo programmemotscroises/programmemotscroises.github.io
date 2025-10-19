@@ -1,81 +1,174 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mots croisés</title>
-    <link href="style.css" rel="stylesheet">
-    <link rel="icon" href="./images/logo.png">
-</head>
-<script src="./script.js"></script>
-<script src="./base.js"></script>
-<body>
-    <div class="title">
-        <h1>Résolveur de mots croisés</h1>
-        <h4>Un site de Axel Thauvin</h4>
-    </div>
-    <div class="liens">
-        <a href="./index.html"><button >Trouver un mot avec des lettres connues</button></a>
-        <a href="./croisement.html"><button id="selected">Croiser deux mots</button></a>
-        <a href="./croise4mots.html"><button>Croiser quatre mots</button></a>
-    </div>
-    <h4 style="font-weight: lighter;">Comment croiser des mots avec seulement quelques lettres connues ?<br> 
-        - Tapez des * (étoiles) à la place de chaque lettre ignorée<br>
-        - Tapez des / (barre oblique) à la place de chaque voyelle<br>
-        - Tapez des # (dièse) à la place de chaque consonne<br>
-        <span style="font-weight: bold;">Les & et les @ ne sont pas encore disponibles sur ce programme</span>
-        <br>    
-        Ce programme fonctionne exactement pareil que celui pour <a href="./index.html" style="font-weight: bold;">Trouver un mot avec des lettres connues</a><br>
-        <br>
-        Comme sur une grille de mots-croisés, si vous cherchez à croiser deux mots, le programme va chercher toutes les possibilités entre les deux, déféni par la case où ils se croisent<br>
-        <br>
-        <span style="font-weight: bold;">Lorsque vous avez rentrez vos deux mots et valider, ils s'afficheront de manière "mot croisé". <br> Cliquez sur chacun des mots, sur la lettres sur laquelle ils se croisent. <br> 
-        <br>
-        Lorsque les mots sont croisés de la manière "mot croisé", vous pouvez cliquez dessus pour obtenir la définition
-    </span>
-        
-    </h4>
-
-    <div class="buttons">
-        <h5 style="color: #115099;">* : Lettre quelconque<br>/ : Voyelle<br># : Consonne</h5>
-        <div>
-            <button class="adderpro" onclick="addCaracter('*');">*</button>
-            <button class="adderpro" onclick="addCaracter('/');">/</button>
-            <button class="adderpro" onclick="addCaracter('#');">#</button>
-            <button class="adderpro" onclick="deletetextlist(['saisie1', 'saisie2']);" id="deleter">&#x1F5D1</button>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Résolveur – Croiser deux mots</title>
+    <link rel="icon" href="./images/logo.png" />
+    <link href="./modern.css" rel="stylesheet" />
+  </head>
+  <body>
+    <header class="app-header">
+      <div class="brand">
+        <img src="./images/logo.png" alt="Logo" class="brand-logo" />
+        <div class="brand-txt">
+          <h1>Résolveur</h1>
+          <p>par Axel Thauvin</p>
         </div>
-    </div>
-    <h1 id="whattodo">Commencez par choisir deux mots</h1>
+      </div>
+      <button id="menuBtn" class="menu-btn" aria-label="Ouvrir le menu">
+        <span class="menu-icon"></span>
+      </button>
+      <nav class="nav">
+        <a class="nav-link" href="./index.html">Recherche</a>
+        <a class="nav-link active" href="./croisement.html"
+          >Croiser deux mots</a
+        >
+        <a class="nav-link" href="./croise4mots.html">Croiser quatre mots</a>
+      </nav>
+    </header>
 
-    
-    <div class="final" style=" margin-left: 20px; margin-bottom: 20px;">
-        <div class="saisiee1" >
-            <input type="text" id="saisie1" placeholder="Premier mot" autofocus onfocus="lastfocusset(this.id)">
-            <button class="valider2" id="buttonvalider1" onclick="tobutton1();">Ok</button>
+    <main class="container">
+      <!-- Étape 1: Saisie des modèles -->
+      <section class="card" id="step1">
+        <h2 style="margin-top: 0">Croiser deux mots</h2>
+        <p class="hint">
+          Entrez deux modèles de mots avec *, / (voyelle) ou # (consonne).
+          Exemple: T*A** et *O*E
+        </p>
+
+        <div class="inputs">
+          <label class="field">
+            <span>Modèle du premier mot</span>
+            <input
+              id="pattern1"
+              type="text"
+              placeholder="Ex: T*A**"
+              autocomplete="off"
+              spellcheck="false"
+            />
+          </label>
+
+          <!-- Boutons d'aide à la saisie -->
+          <div class="input-helpers">
+            <button
+              class="btn helper-btn"
+              data-target="pattern1"
+              data-char="*"
+              title="Joker"
+            >
+              *
+            </button>
+            <button
+              class="btn helper-btn"
+              data-target="pattern1"
+              data-char="/"
+              title="Voyelle"
+            >
+              /
+            </button>
+            <button
+              class="btn helper-btn"
+              data-target="pattern1"
+              data-char="#"
+              title="Consonne"
+            >
+              #
+            </button>
+            <button
+              class="btn danger helper-btn"
+              data-target="pattern1"
+              data-action="clear"
+              title="Effacer"
+            >
+              🗑️
+            </button>
+          </div>
+
+          <label class="field">
+            <span>Modèle du deuxième mot</span>
+            <input
+              id="pattern2"
+              type="text"
+              placeholder="Ex: *O*E"
+              autocomplete="off"
+              spellcheck="false"
+            />
+          </label>
+
+          <!-- Boutons d'aide à la saisie -->
+          <div class="input-helpers">
+            <button
+              class="btn helper-btn"
+              data-target="pattern2"
+              data-char="*"
+              title="Joker"
+            >
+              *
+            </button>
+            <button
+              class="btn helper-btn"
+              data-target="pattern2"
+              data-char="/"
+              title="Voyelle"
+            >
+              /
+            </button>
+            <button
+              class="btn helper-btn"
+              data-target="pattern2"
+              data-char="#"
+              title="Consonne"
+            >
+              #
+            </button>
+            <button
+              class="btn danger helper-btn"
+              data-target="pattern2"
+              data-action="clear"
+              title="Effacer"
+            >
+              🗑️
+            </button>
+          </div>
+
+          <button id="validateBtn" class="btn primary">
+            Valider les modèles
+          </button>
         </div>
+      </section>
 
-        <div class="saisiee2">
-            <input type="text" id="saisie2" placeholder="Deuxième mot" onfocus="lastfocusset(this.id)">
-            <button class="valider2"  id="buttonvalider2" onclick="tobutton2();">Ok</button>
-        </div>
-        
-        
+      <!-- Étape 2: Sélection des positions de croisement -->
+      <section class="card" id="step2" style="display: none">
+        <h2 style="margin-top: 0">Positions de croisement</h2>
+        <p class="hint">
+          Cliquez sur une case de chaque mot pour choisir où ils se croisent.
+        </p>
+        <div id="wordDisplay"></div>
+        <button id="crossBtn" class="btn primary" disabled>
+          Calculer les croisements
+        </button>
+      </section>
 
-        <button class="valider" id="valider-button" onclick="create();" style="display: none; ">Valider</button>
-        
-        
-    </div>
+      <!-- Étape 3: Résultats -->
+      <section class="card" id="step3" style="display: none">
+        <h2 style="margin: 0 0 16px 0">Croisements trouvés</h2>
+        <div id="gridDisplay" class="grid-container"></div>
+        <button id="restartBtn" class="btn">Nouvelle recherche</button>
+      </section>
+    </main>
 
-    <div class="result2">
-       
-        
-        
-    </div>
+    <footer class="footer">
+      <small>&copy; <span id="year"></span> Axel Thauvin</small>
+    </footer>
 
-
-</body>
-
-
-
+    <script src="./base.js"></script>
+    <script src="./cross.js"></script>
+    <script src="./ui.js"></script>
+    <script>
+      const y = document.getElementById("year");
+      if (y) y.textContent = String(new Date().getFullYear());
+    </script>
+  </body>
 </html>

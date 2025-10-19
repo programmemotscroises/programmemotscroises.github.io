@@ -1,42 +1,105 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mots croisés</title>
-    <link href="style.css" rel="stylesheet">
-    <link rel="icon" href="./images/logo.png">
-</head>
-<script src="./script.js"></script>
-<script src="./base.js"></script>
-<body>
-    <div class="title">
-        <h1>Résolveur de mots croisés</h1>
-        <h4>Un site de Axel Thauvin</h4>
-    </div>
-    <div class="liens">
-        <a href="./index.html"><button >Trouver un mot avec des lettres connues</button></a>
-        <a href="./croisement.html"><button>Croiser deux mots</button></a>
-        <a href="./croise4mots.html"><button id="selected">Croiser quatre mots</button></a>
-    </div>
-
-    <div class="buttons">
-        <h5 style="color: #115099;">* : Lettre quelconque<br>/ : Voyelle<br># : Consonne</h5>
-        <div>
-            <button class="adderpro" onclick="addCaracter('*');">*</button>
-            <button class="adderpro" onclick="addCaracter('/');">/</button>
-            <button class="adderpro" onclick="addCaracter('#');">#</button>
-            <button onclick="deletetext('saisiedim');" id="deleter">&#x1F5D1</button>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Résolveur – Grille Complète</title>
+    <link rel="icon" href="./images/logo.png" />
+    <link href="./modern.css" rel="stylesheet" />
+    <style>
+      .instructions {
+        background: var(--elev);
+        padding: 16px;
+        border-radius: 12px;
+        margin-bottom: 20px;
+        font-size: 14px;
+        line-height: 1.6;
+      }
+      .instructions ul {
+        margin: 8px 0;
+        padding-left: 20px;
+      }
+      .instructions li {
+        margin: 4px 0;
+      }
+      .instructions strong {
+        color: var(--brand);
+      }
+    </style>
+  </head>
+  <body>
+    <header class="app-header">
+      <div class="brand">
+        <img src="./images/logo.png" alt="Logo" class="brand-logo" />
+        <div class="brand-txt">
+          <h1>Résolveur</h1>
+          <p>par Axel Thauvin</p>
         </div>
-    </div>
-    <div class="contentsaisie">
-        <button onclick="createtable(15);" >Créer le tableau</button>
-        <input type="text" id="saisiedim" placeholder="Dimensions : (par défaut 15)" style="margin-left: 20px;" onfocus="lastfocusset(this.id)">
-    </div>
-    
+      </div>
+      <button id="menuBtn" class="menu-btn" aria-label="Ouvrir le menu">
+        <span class="menu-icon"></span>
+      </button>
+      <nav class="nav">
+        <a class="nav-link" href="./index.html">Recherche</a>
+        <a class="nav-link" href="./croisement.html">Croiser deux mots</a>
+        <a class="nav-link active" href="./croise4mots.html">Grille Complète</a>
+      </nav>
+    </header>
 
+    <main class="container">
+      <section class="card">
+        <h2 style="margin-top: 0">Solveur de Grille Complète</h2>
+        <div class="instructions">
+          <p><strong>Comment utiliser :</strong></p>
+          <ul>
+            <li><strong>*</strong> = n'importe quelle lettre</li>
+            <li><strong>/</strong> = une voyelle (A, E, I, O, U, Y)</li>
+            <li><strong>#</strong> = une consonne</li>
+            <li>Remplissez la grille avec des lettres ou des motifs</li>
+            <li>Les mots doivent faire au moins 2 lettres</li>
+            <li>
+              Le solveur détecte automatiquement les mots horizontaux et
+              verticaux
+            </li>
+            <li>
+              Il trouve toutes les combinaisons valides qui respectent les
+              croisements
+            </li>
+          </ul>
+        </div>
 
-</body>
+        <div class="grid-input-section">
+          <label for="gridSizeInput">Taille de la grille :</label>
+          <input
+            type="number"
+            id="gridSizeInput"
+            min="5"
+            max="25"
+            value="15"
+            class="input"
+          />
+          <button id="createGridBtn" class="btn primary">
+            Créer la grille
+          </button>
+        </div>
 
+        <div id="gridContainer"></div>
+      </section>
+
+      <div id="resultsContainer"></div>
+    </main>
+
+    <footer class="footer">
+      <small>&copy; <span id="year"></span> Axel Thauvin</small>
+    </footer>
+
+    <script src="./base.js"></script>
+    <script src="./grid.js"></script>
+    <script src="./ui.js"></script>
+    <script>
+      const y = document.getElementById("year");
+      if (y) y.textContent = String(new Date().getFullYear());
+    </script>
+  </body>
 </html>
