@@ -122,7 +122,7 @@
       dom.title.textContent = "Résultats";
       return;
     }
-    dom.title.textContent = `Résultats (${total})`;
+    dom.title.textContent = `Résultats (${exactItems.length})`;
 
     const renderItem = (item) => {
       const badgeLabel = item.score === 0 ? "Exact" : `Hamming +${item.score}`;
